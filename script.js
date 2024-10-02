@@ -11,8 +11,36 @@ function saveLine() {
   renderTranslations();
   renderJsons();
   saveJsons();
-  //   cleanInputFields();
+  cleanInputFields();
   document.getElementById("inputKey").focus();
+}
+
+function showPreview() {
+  let preview = document.getElementById("previewJson");
+  let curtain = document.getElementById("curtain");
+  preview.classList.remove("d-none");
+  curtain.classList.remove("d-none");
+}
+
+function hidePreview() {
+  let preview = document.getElementById("previewJson");
+  let curtain = document.getElementById("curtain");
+  preview.classList.add("d-none");
+  curtain.classList.add("d-none");
+}
+
+function openMenu() {
+  let menu = document.getElementById("menu");
+  let curtain = document.getElementById("curtain");
+  menu.classList.remove("d-none");
+  curtain.classList.remove("d-none");
+}
+
+function closeMenu() {
+  let menu = document.getElementById("menu");
+  let curtain = document.getElementById("curtain");
+  menu.classList.add("d-none");
+  curtain.classList.add("d-none");
 }
 
 function readTextInput(id) {
@@ -44,16 +72,7 @@ function addTranslation(key, english, german) {
 
 function renderTranslations() {
   let renderContainer = document.getElementById("renderOutput");
-  let html = `
-    <div class="translationLine" >
-        <div class="outputLine">
-            <span><strong>Key</strong></span>
-            <span><strong>English</strong></span>
-            <span><strong>German</strong></span>
-        </div> 
-        <div class=buttonContainer></div>
-    </div>
-        `;
+  let html = "";
 
   translations.forEach((translation, i) => {
     html += `
@@ -64,13 +83,22 @@ function renderTranslations() {
                 <span>${translation.german}</span>
             </div>  
             <div class=buttonContainer>
-                <button onclick=editLine(${i})>edit</button>
-                <button onclick=deleteLine(${i})>del</button>
+                <button onclick=editLine(${i}) name="edit" title="edit line" ><img src="./img/edit.svg" alt="">
+                </button>
+                <button title="delete Line" onclick=deleteLine(${i})>X</button>
             </div>
         </div>
         `;
   });
   renderContainer.innerHTML = html;
+}
+
+function resetAll() {
+  if (confirm("This will delete the whole list. Are you sure?")) {
+    translations = [];
+    renderTranslations();
+    renderJsons();
+  }
 }
 
 function editLine(i) {
@@ -108,17 +136,13 @@ function generateJson(lang) {
 function saveJsons() {
   de = document.getElementById("deJson").innerText;
   en = document.getElementById("enJson").innerText;
-  console.log("saving", de);
 }
 
 function exportJson() {
   const enBlob = new Blob([JSON.stringify(en)], {
     type: "application/json",
   });
-  console.log(enBlob.text());
 }
-
-
 
 function downloadFile(file, name) {
   let oBlob, elLink;
@@ -146,3 +170,21 @@ function downloadFile(file, name) {
   // Klick auslösen
   elLink.click();
 }
+
+document.getElementById("inputKey").addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    document.getElementById("inputEnglish").focus();
+  }
+});
+
+document.getElementById("inputEnglish").addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    document.getElementById("inputGerman").focus();
+  }
+});
+
+document.getElementById("inputGerman").addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    saveLine();
+  }
+});
