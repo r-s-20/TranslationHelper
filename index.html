@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Translation helper</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <header><h1>Simple Translation Helper</h1></header>
+    <div class="mainContent">
+      <div class="inputLine">
+        <div class="inputContainer">
+          <label for="inputKey">Key</label>
+          <input type="text" id="inputKey" />
+        </div>
+        <div class="inputContainer">
+          <label for="inputEnglish">English</label>
+          <input type="text" id="inputEnglish" />
+        </div>
+        <div class="inputContainer">
+          <label for="inputGerman">German</label>
+          <input type="text" id="inputGerman" />
+        </div>
+        <button onclick="saveLine()">Enter</button>
+      </div>
+      <div class="outputContainer"><h2>Output</h2><div class="renderOutput"><i>No input yet</i></div></div>
+    </div>
+  </body>
+</html>
