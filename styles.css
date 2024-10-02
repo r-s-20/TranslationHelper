@@ -1,49 +1,115 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
+:root {
+  --lightgrey: rgba(0, 0, 0, 0.2);
+}
 body {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-size: 16px;
-    font-family: sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-size: 16px;
+  font-family: sans-serif;
 }
 
 header {
-    height: 5rem;
-    box-shadow: 2px 3px 5px 2px black;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    padding: 3rem;
+  height: 5rem;
+  box-shadow: 2px 3px 5px 2px var(--lightgrey);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  padding: 3rem;
+  img {
+    width: 64px;
+    height: 64px;
+    margin-right: 2rem;
+  }
+}
 
+button {
+  border: 1px solid var(--lightgrey);
+  background-color: transparent;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 2px 2px 3px var(--lightgrey);
+    scale: 1.05;
+  }
+  &:focus {
+    outline: none;
+    border: 1px solid rgb(161, 161, 216);
+  }
+}
+
+input[type="text"] {
+  border: 1px solid var(--lightgrey);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  &:focus {
+    outline: none;
+    border: 1px solid rgb(161, 161, 216);
+  }
+}
+
+.add-btn {
+  font-weight: bold;
+  font-size: 1.5rem;
+  background-color: lightgreen;
 }
 
 .mainContent {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 3rem;
+  max-width: 900px;
 }
 
 .inputLine {
-    display: flex;
-    align-items: flex-end;
-    width: 50%;
-    padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 1rem;
 }
 
 .outputContainer {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 2rem;
-    margin: 1rem;
-    width: 50%;
-    flex:1;
-    border-radius: 0.5rem;
-    border: 1px solid rgba(0,0,0,0.2);
-    h2 {
-        margin-top: 0;
-    }
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  width: 100%;
+  flex: 1;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.translationLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 70%; */
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.outputLine {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.renderJson {
+  display: flex;
+  justify-content: space-between;
+  >div {
+    flex: 0.5;
+  }
 }

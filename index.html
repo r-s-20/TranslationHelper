@@ -4,11 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Translation helper</title>
+    <link rel="shortcut icon" href="./img/translation.png" type="image/x-icon" />
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="./script.js"></script>
   </head>
   <body>
-    <header><h1>Simple Translation Helper</h1></header>
+    <header>
+      <img src="./img/translation.png" alt="" />
+      <h1>Simple Translation Helper</h1>
+    </header>
     <div class="mainContent">
       <div class="inputLine">
         <div class="inputContainer">
@@ -23,9 +27,22 @@
           <label for="inputGerman">German</label>
           <input type="text" id="inputGerman" />
         </div>
-        <button onclick="saveLine()">Enter</button>
+        <button class="add-btn" title="Add" onclick="saveLine()">+</button>
       </div>
-      <div class="outputContainer"><h2>Output</h2><div class="renderOutput"><i>No input yet</i></div></div>
+      <div class="outputContainer" id="outputContainer">
+        <h2>All words</h2>
+        <div id="renderOutput"><i>No input yet</i></div>
+        <div class="renderJson">
+          <div id="renderLang1">
+            <h3>en.json</h3>
+            <div id="enJson"></div>
+          </div>
+          <div id="renderLang2">
+            <h3>de.json</h3>
+            <div id="deJson"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
