@@ -10,8 +10,15 @@
   </head>
   <body>
     <header>
-      <img src="./img/translation.png" alt="" />
-      <h1>Simple Translation Helper</h1>
+      <div class="titleArea">
+        <img src="./img/translation.png" alt="" />
+        <h1>Simple Translation Helper</h1>
+      </div>
+      <button class="burgerMenu">
+        <div class="burgerLine"></div>
+        <div class="burgerLine"></div>
+        <div class="burgerLine"></div>
+      </button>
     </header>
     <div class="mainContent">
       <div class="inputLine">
@@ -34,15 +41,23 @@
         <div id="renderOutput"><i>No input yet</i></div>
         <div class="renderJson">
           <div id="renderLang1">
-            <h3>en.json</h3>
+            <div class="langHeader">
+              <h3>en.json</h3>
+              <button class="downloadButton" onclick="downloadFile(en, 'en.json')">Download en.json</button>
+            </div>
             <div id="enJson"></div>
           </div>
           <div id="renderLang2">
-            <h3>de.json</h3>
+            <div class="langHeader">
+              <h3>de.json</h3>
+              <button class="downloadButton" onclick="downloadFile(de, 'de.json')">Download de.json</button>
+            </div>
             <div id="deJson"></div>
           </div>
         </div>
       </div>
     </div>
+
+    <a id="downloadLink" href="" download="en.json" style="display: none"></a>
   </body>
 </html>

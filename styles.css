@@ -9,22 +9,48 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   min-height: 100vh;
   font-size: 16px;
   font-family: sans-serif;
 }
 
 header {
+  width: 100%;
   height: 5rem;
   box-shadow: 2px 3px 5px 2px var(--lightgrey);
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 3rem;
   img {
-    width: 64px;
-    height: 64px;
+    width: 52px;
+    height: 52px;
     margin-right: 2rem;
+  }
+}
+
+.titleArea {
+  display: flex;
+  align-items: center;
+}
+
+.burgerMenu {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  .burgerLine {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    height: 3px;
+    border-radius: 1rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 90%;
   }
 }
 
@@ -65,7 +91,7 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   padding: 1rem 3rem;
-  max-width: 900px;
+  max-width: 1440px;
 }
 
 .inputLine {
@@ -94,22 +120,45 @@ input[type="text"] {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* width: 70%; */
   gap: 1rem;
   margin-bottom: 0.5rem;
 }
 
 .outputLine {
-  width: 80%;
+    flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  span {
+    flex: 1;
+    margin-right: 0.5rem;
+  }
+}
+
+.buttonContainer {
+    width: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+}
+
+.langHeader {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
 }
 
 .renderJson {
   display: flex;
   justify-content: space-between;
-  >div {
+  > div {
     flex: 0.5;
   }
+}
+
+.downloadButton {
+    padding: 0.5rem;
+    height: fit-content;
 }

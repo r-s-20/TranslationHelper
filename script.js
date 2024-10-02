@@ -1,6 +1,7 @@
 let translations = [];
 let en = {};
 let de = {};
+let oLastUrl = null;
 
 function saveLine() {
   let key = readTextInput("inputKey");
@@ -10,7 +11,7 @@ function saveLine() {
   renderTranslations();
   renderJsons();
   saveJsons();
-//   cleanInputFields();
+  //   cleanInputFields();
   document.getElementById("inputKey").focus();
 }
 
@@ -43,15 +44,23 @@ function addTranslation(key, english, german) {
 
 function renderTranslations() {
   let renderContainer = document.getElementById("renderOutput");
-  let html = "";
+  let html = `
+    <div class="translationLine" >
+        <div class="outputLine">
+            <span><strong>Key</strong></span>
+            <span><strong>English</strong></span>
+            <span><strong>German</strong></span>
+        </div> 
+        <div class=buttonContainer></div>
+    </div>
+        `;
+
   translations.forEach((translation, i) => {
     html += `
         <div class="translationLine" >
             <div class="outputLine">
                 <span>${translation.key}</span>
-                <span>|</span>
                 <span>${translation.english}</span>
-                <span>|</span>
                 <span>${translation.german}</span>
             </div>  
             <div class=buttonContainer>
@@ -74,6 +83,7 @@ function editLine(i) {
 function deleteLine(i) {
   translations.splice(i, 1);
   renderTranslations();
+  renderJsons();
 }
 
 function renderJsons() {
@@ -87,7 +97,7 @@ function generateJson(lang) {
   let jsonText = "{<br>";
   translations.forEach((translation, i) => {
     jsonText += `
-        '${translation.key}': '${translation[lang]}'
+        "${translation.key}": "${translation[lang]}"
     `;
     if (i < translations.length - 1) jsonText += ",<br>";
   });
@@ -96,7 +106,43 @@ function generateJson(lang) {
 }
 
 function saveJsons() {
-    de = document.getElementById("deJson").innerText;
-    en = document.getElementById("enJson").innerText;
-    console.log("saving", de);
+  de = document.getElementById("deJson").innerText;
+  en = document.getElementById("enJson").innerText;
+  console.log("saving", de);
+}
+
+function exportJson() {
+  const enBlob = new Blob([JSON.stringify(en)], {
+    type: "application/json",
+  });
+  console.log(enBlob.text());
+}
+
+
+
+function downloadFile(file, name) {
+  let oBlob, elLink;
+
+  // Letzte Objekt-URL löschen (falls vorhanden)
+  if (oLastUrl == null) {
+    window.URL.revokeObjectURL(oLastUrl);
+    oLastUrl = null;
+  }
+
+  // Blob-Objekt erzeugen
+  oBlob = new Blob([file], { type: "application/json" });
+
+  // Download-Element laden
+  elLink = document.getElementById("downloadLink");
+
+  // URL erzeugen und merken
+  oLastUrl = window.URL.createObjectURL(oBlob);
+
+  // URL dem HTML-Element zuweisen
+  elLink.href = oLastUrl;
+
+  elLink.download = name;
+
+  // Klick auslösen
+  elLink.click();
 }
